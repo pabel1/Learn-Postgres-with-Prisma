@@ -16,10 +16,43 @@ model User {
   id Int @unique @default(autoincrement())
   name String 
   email String @unique 
-  role Role @default(user)
+  role Role @default(user) //enum value set
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts Posts[]
+  profile Profile?
 }
 // enum value set for user role
 enum Role {
   user
   admin
+}
+
+//post model 
+model Posts{
+  id Int @unique @default(autoincrement())
+  title String 
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  categories Categories[]
+}
+// profile model
+model Profile{
+  id Int @unique @default(autoincrement())
+  bio String 
+  userId Int @unique
+  user User @relation(fields: [userId],references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+// categories Model 
+model Categories{
+  id Int @unique @default(autoincrement())
+  bio String 
+  postId Int
+  post Posts @relation(fields: [postId],references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
