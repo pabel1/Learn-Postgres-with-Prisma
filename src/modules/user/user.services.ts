@@ -1,7 +1,13 @@
-import express from "express";
+import { User } from "@prisma/client";
+import prisma from "../../shareable/prismaInstants";
 
-const router = express.Router();
+const userInsertIntoDB = async (data: User): Promise<User> => {
+  const newUser = await prisma.user.create({
+    data: data,
+  });
+  return newUser;
+};
 
-router.route("/get-user").get();
-
-export const userRouter = router;
+export const userServices = {
+  userInsertIntoDB,
+};
