@@ -77,29 +77,31 @@ const allUsersFromDB = async () => {
         // id: {
         //   notIn: [1, 4],
         // },
-
         // name: {
         //   equals: "pabel",
         //   mode: "insensitive",
         // },
-
-        OR: [
-          {
-            id: {
-              gte: 42,
-            },
-          },
-          {
-            name: {
-              equals: "Pabel",
-            },
-          },
-        ],
-        AND: {
-          email: {
-            startsWith: "pabel",
-          },
-        },
+        // OR: [
+        //   {
+        //     id: {
+        //       gte: 42,
+        //     },
+        //   },
+        //   {
+        //     name: {
+        //       equals: "Pabel",
+        //     },
+        //   },
+        // ],
+        // AND: {
+        //   email: {
+        //     startsWith: "pabel",
+        //   },
+        // },
+      },
+      select: {
+        name: true,
+        id: true,
       },
     });
 
