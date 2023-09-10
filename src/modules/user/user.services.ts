@@ -1,5 +1,6 @@
 import { Profile, User } from "@prisma/client";
 import prisma from "../../shareable/prismaInstants";
+import { startOfDayEndOfDay } from "../../utilitys/getDateMonthTime";
 
 const userInsertIntoDB = async (data: User): Promise<User> => {
   const newUser = await prisma.user.create({
@@ -44,7 +45,31 @@ const userProfileCreateOrUpdateIntoDB = async (
   }
 };
 
+// get ussers wih filtering
+const allUsersFromDB = async () => {
+  const { startOfDay, endOfDay } = startOfDayEndOfDay();
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        // createdAt: {
+        //   gte: startOfDay,
+        //   lte: endOfDay,
+        // },
+        // name: {
+        //   startsWith: "P",
+        //   endsWith: "l",
+        // },
+      },
+    });
+
+    return users;
+  } catch (error: any) {
+    return error.toString();
+  }
+};
+
 export const userServices = {
   userInsertIntoDB,
   userProfileCreateOrUpdateIntoDB,
+  allUsersFromDB,
 };

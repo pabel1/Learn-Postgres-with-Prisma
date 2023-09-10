@@ -36,7 +36,25 @@ const userProfile = async (req: Request, res: Response) => {
   }
 };
 
+// get all user with filtering
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await userServices.allUsersFromDB();
+
+    res.status(200).json({
+      success: true,
+      users,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      error: error.toString(),
+    });
+  }
+};
+
 export const userController = {
   createUser,
   userProfile,
+  getUsers,
 };
