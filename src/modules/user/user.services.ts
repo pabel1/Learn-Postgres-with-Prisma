@@ -59,6 +59,47 @@ const allUsersFromDB = async () => {
         //   startsWith: "P",
         //   endsWith: "l",
         // },
+        // name: {
+        //   contains: "be",
+        // },
+        // email: {
+        //   contains: "39",
+        // },
+        // id: {
+        //   not: 4,
+        // },
+        // id: {
+        //   equals: 4,
+        // },
+        // id: {
+        //   in: [1, 4],
+        // },
+        // id: {
+        //   notIn: [1, 4],
+        // },
+
+        // name: {
+        //   equals: "pabel",
+        //   mode: "insensitive",
+        // },
+
+        OR: [
+          {
+            id: {
+              gte: 42,
+            },
+          },
+          {
+            name: {
+              equals: "Pabel",
+            },
+          },
+        ],
+        AND: {
+          email: {
+            startsWith: "pabel",
+          },
+        },
       },
     });
 
