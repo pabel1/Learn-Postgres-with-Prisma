@@ -21,6 +21,7 @@ model User {
   updatedAt DateTime @updatedAt
   posts Posts[]
   profile Profile?
+  departmentSalary  DepartmentSalary[]
 }
 // enum value set for user role
 enum Role {
@@ -47,12 +48,23 @@ model Profile{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 // categories Model 
 model Categories{
   id Int @unique @default(autoincrement())
   bio String 
   postId Int
   post Posts @relation(fields: [postId],references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DepartmentSalary{
+  id Int @unique @default(autoincrement())
+  departname String 
+  salary Int 
+  userId Int 
+  user User @relation(fields: [userId],references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
