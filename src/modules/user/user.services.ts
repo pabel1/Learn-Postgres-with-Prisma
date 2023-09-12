@@ -99,10 +99,35 @@ const allUsersFromDB = async () => {
         //   },
         // },
       },
-      select: {
-        name: true,
-        id: true,
-      },
+      // select: {
+      //   name: true,
+      //   id: true,
+      // },
+      // include: {
+      //   posts: true, // post ar sathe relation a ache tai post sr data niye ashte
+      //   profile: true, //profile ar sathe relation a ache tai post sr data niye ashte
+      // },
+
+      // now relation a jara ache tader data select krete suppose user ar profile ar bio ta just ante hbe other gulo na
+      // include: {
+      //   profile: {
+      //     select: {
+      //       bio: true,
+      //     },
+      //   },
+      // },
+
+      // relation gulo and sathe user gulor o specific data get krte
+      //suppose user ar name and tar bio
+
+      // select: {
+      //   name: true,
+      //   profile: {
+      //     select: {
+      //       bio: true,
+      //     },
+      //   },
+      // },
     });
 
     return users;
